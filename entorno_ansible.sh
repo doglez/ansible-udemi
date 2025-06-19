@@ -53,8 +53,21 @@ create_container() {
 }
 
 start_all() {
+  if ! docker network inspect "$NETWORK_NAME" >/dev/null 2>&1; then
+    echo "❌ La red '$NETWORK_NAME' no existe."
+    return
+  fi
+
+  containers=$(docker ps -a --filter network=$NETWORK_NAME --format '{{.Names}} {{.ID}}')
+
   echo "🔧 Buscando contenedores en la red '$NETWORK_NAME'..."
-  docker ps -a --filter network=$NETWORK_NAME --format '{{.Names}} {{.ID}}' | while read -r name id; do
+
+  if [[ -z "$containers" ]]; then
+    echo "⚠️  No se encontraron contenedores conectados a la red '$NETWORK_NAME'."
+    return
+  fi
+
+  docker "$containers" | while read -r name id; do
     echo "⏳  Arrancando contenedor $name (ID: $id)..."
     if docker start "$name" >/dev/null; then
       echo "🚀  Contenedor $name arrancado."
