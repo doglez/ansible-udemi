@@ -6,17 +6,17 @@
 start_time=$(date +%s)
 
 ###################################
-# Detener entorno Ansible
+# Arrancar entorno Ansible
 ###################################
 echo "🔧 Buscando contenedores en la red 'ansible'..."
 
-docker ps --filter network=ansible --format '{{.Names}} {{.ID}}' | while read -r name id; do
-  echo "⏳  Deteniendo contenededor $name con id: $id"
+docker ps -a --filter network=ansible --format '{{.Names}} {{.ID}}' | while read -r name id; do
+  echo "⏳  Arrancando contenededor $name con id: $id"
 
-  if docker stop "$name" >/dev/null; then
-    echo "🛑  Contenedor $name detenido."
+  if docker start "$name" >/dev/null; then
+    echo "🛑  Contenedor $name arrancado."
   else
-    echo "❌  Error al detener contenedor $name."
+    echo "❌  Error al arrancar contenedor $name."
   fi
 done
 
