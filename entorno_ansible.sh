@@ -67,7 +67,7 @@ start_all() {
     return
   fi
 
-  docker "$containers" | while read -r name id; do
+  echo "$containers" | while read -r name id; do
     echo "⏳  Arrancando contenedor $name (ID: $id)..."
     if docker start "$name" >/dev/null; then
       echo "🚀  Contenedor $name arrancado."
