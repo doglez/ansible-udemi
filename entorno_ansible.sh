@@ -96,6 +96,7 @@ rebuild() {
   remove_container rocky2
   remove_container ubuntu1
   remove_container mysql1
+  remove_container mysql2
   remove_container tomcat1
   remove_container tomcat2
 
@@ -108,6 +109,7 @@ rebuild() {
   create_container /sys/fs/cgroup:/sys/fs/cgroup:rw 172.18.0.6  rocky2  "$NETWORK_NAME" apasoft/rocky9-ansible
   create_container /sys/fs/cgroup:/sys/fs/cgroup:rw 172.18.0.8  ubuntu1 "$NETWORK_NAME" apasoft/ubuntu22-ansible
   create_container /sys/fs/cgroup:/sys/fs/cgroup:rw 172.18.0.10 mysql1  "$NETWORK_NAME" apasoft/debian11-ansible
+  create_container /sys/fs/cgroup:/sys/fs/cgroup:rw 172.18.0.11 mysql2  "$NETWORK_NAME" apasoft/debian11-ansible
   create_container /sys/fs/cgroup:/sys/fs/cgroup:rw 172.18.0.12 tomcat1 "$NETWORK_NAME" apasoft/debian11-ansible
   create_container /sys/fs/cgroup:/sys/fs/cgroup:rw 172.18.0.13 tomcat2 "$NETWORK_NAME" apasoft/debian11-ansible
 }
