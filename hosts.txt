@@ -1,9 +1,10 @@
-172.18.0.2  debian1
-172.18.0.3  debian2
-172.18.0.5  rocky1
-172.18.0.6  rocky2
-172.18.0.8  ubuntu1
-172.18.0.10 mysql1 
-172.18.0.11 mysql2 
-172.18.0.12 tomcat1
-172.18.0.13 tomcat2
+# IP's para conetarse con los servidores en la red Ansible
+172.18.0.2      debian1
+172.18.0.3      debian2
+172.18.0.5      rocky1
+172.18.0.6      rocky2
+172.18.0.8      ubuntu1
+172.18.0.10     mysql1
+172.18.0.11     mysql2
+172.18.0.12     tomcat1
+172.18.0.13     tomcat2
