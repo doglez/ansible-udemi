@@ -4,6 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && \
   apt install -y openssh-server sudo && \
+  apt install nano iputils-ping -y && \
   useradd -m -s /bin/bash ansible && \
   echo 'ansible:ansible123' | chpasswd && \
   echo 'ansible ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
@@ -20,3 +21,7 @@ CMD [ "/usr/sbin/sshd", "-D" ]
 # docker build -t control-node .
 # docker run -dit --name control-node -p 2222:22 control-node
 # ssh ansible@localhost -p 2222
+
+# Si se tiene problemas para cargar por ssh
+# ssh-keygen -R [localhost]:2222
+
